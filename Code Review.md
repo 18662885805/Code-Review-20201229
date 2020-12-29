@@ -224,6 +224,8 @@ v4 的 Form 不再需要通过 `Form.create()` 创建上下文。Form 组件�
         </div>
       </FormItem>
     </Form>
+    
+ export default Form.create()(AddForm)
 
 ```
 
@@ -266,7 +268,45 @@ v4 的 Form 不再需要通过 `Form.create()` 创建上下文。Form 组件�
 
 ##### useState 和 useReducer 
 
-useState 的功能就是 useReducer 的子集？实际上，在 React 内部，useState 就是用 useReducer 实现的，useState 返回的函数内部封装了一个 dispatch。 
+useState 的功能就是 useReducer 的子集。实际上，在 React 内部，useState 就是用 useReducer 实现的，useState 返回的函数内部封装了一个 dispatch。
+
+- 更容易管理大量状态
+
+- 更容易被其他开发者理解
+
+- 更容易被测试
+
+  如果用的是 useReducer，所有的跟 state 相关的业务逻辑代码都可以放到一个单独的函数里，跟你的组件分开，非常好测试。把状态更新代码和渲染逻辑分开，使得可以把测试代码也分成这两部分。
+
+  ```
+  const initialState = {
+      values: '',
+  }
+  
+  const reducer = (state, action) => {
+      switch (action.type) {
+          case 'setValues':
+              return {
+                  ...state,
+                  values: action.payload,
+              }
+      }
+  }
+  
+  
+  const SidebarEditAdd = props => {
+  	useEffect(() => {
+         dispatch({ type: 'setValues', payload: '123' })
+      }, [])
+      
+      const { values } = state
+      return (
+      	<div>{values}</div>
+      )
+  }
+  ```
+
+  
 
 
 
