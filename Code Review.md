@@ -4,19 +4,20 @@ Code Review
 
 #### 1.1 测试&生产环境判断
 
-`if (window.location.origin == 'http://172.16.40.164:8080') {
+```
+if (window.location.origin == 'http://172.16.40.164:8080') {
 
   console.log('development环境')
 
   var base = {
 
-​    sq: '/api',
+    sq: '/api',
 
-​    bd: '/cailian',
+    bd: '/cailian',
 
-​    sd: '/tgc',
+    sd: '/tgc',
 
-​    bs: 'http://test.tgc.gyzq.com.cn'
+    bs: 'http://test.tgc.gyzq.com.cn'
 
   }
 
@@ -26,23 +27,26 @@ Code Review
 
   var base = {
 
-​    sq: '',
+    sq: '',
 
-​    bd: '',
+    bd: '',
 
-​    sd: '',
+    sd: '',
 
-​    bs: 'https://tgc.gyzq.com.cn'
+    bs: 'https://tgc.gyzq.com.cn'
 
   }
 
-} `
+} 
+
+```
 
 
 
 #### 1.2 APP版本判断
 
-`function checkNewVersion(){
+```
+function checkNewVersion(){
 
   var ua = navigator.userAgent.toLocaleLowerCase();
 
@@ -52,15 +56,15 @@ Code Review
 
   for (var i = 0; i < ua_list.length; i++) {
 
-​    if((ua_list[i]).match(/gydj/)){
+    if((ua_list[i]).match(/gydj/)){
 
-​      var version_list = ua_list[i].split('-');
+      var version_list = ua_list[i].split('-');
 
-​      app_version = version_list&&version_list.length ? (version_list[1] ? version_list[1] : 0) : 0;
+      app_version = version_list&&version_list.length ? (version_list[1] ? version_list[1] : 0) : 0;
 
-​      break
+      break
 
-​    }
+    }
 
   }
 
@@ -70,15 +74,19 @@ Code Review
 
   if(cpr_version('6.10.5',app_version)){
 
-​    return true
+    return true
 
   }else{
 
-​    return false
+    return false
 
   }
 
-}`
+}
+
+```
+
+
 
 ##### 
 
@@ -86,37 +94,39 @@ Code Review
 
 #### 2.1 Echarts图x坐标轴文本样式、格式化
 
-`xAxis: {
+```
+xAxis: {
 
-​                type: 'category',
+                type: 'category',
 
-​                boundaryGap: false,
+                boundaryGap: false,
 
-​                data: date,
+                data: date,
 
-​                axisLabel: {//坐标轴刻度标签的相关设置。
+                axisLabel: {//坐标轴刻度标签的相关设置。
 
-​                    textStyle: {
+                    textStyle: {
 
-​                        fontSize: 8
+                        fontSize: 8
 
-​                    },
+                    },
 
-​                    //格式设置
+                    //格式设置
 
-​                    formatter: function(value, index ){
+                    formatter: function(value, index ){
 
-​                        return value
+                        return value
 
-​                    },
+                    },
 
-​                },
+                },
 
-​        },`
+        },
 
+```
 
-
-` function timeFormatter (params) {
+```
+ function timeFormatter (params) {
 
   var newParamsName = '';// 最终拼接成的字符串
 
@@ -128,35 +138,35 @@ Code Review
 
   if (paramsNameNumber > provideNumber) {
 
-​      /* 循环每一行,p表示行 */
+      /* 循环每一行,p表示行 */
 
-​      for (var p = 0; p < rowNumber; p++) {
+      for (var p = 0; p < rowNumber; p++) {
 
-​          var tempStr = '';// 表示每一次截取的字符串
+          var tempStr = '';// 表示每一次截取的字符串
 
-​          var start = p * provideNumber;// 开始截取的位置
+          var start = p * provideNumber;// 开始截取的位置
 
-​          var end = start + provideNumber;// 结束截取的位置
+          var end = start + provideNumber;// 结束截取的位置
 
-​          // 此处特殊处理最后一行的索引值
+          // 此处特殊处理最后一行的索引值
 
-​          if (p == rowNumber - 1) {
+          if (p == rowNumber - 1) {
 
-​          // 最后一次不换行
+          // 最后一次不换行
 
-​              tempStr = params.substring(start, paramsNameNumber);
+              tempStr = params.substring(start, paramsNameNumber);
 
-​          } else {
+          } else {
 
-​          // 每一次拼接字符串并换行
+          // 每一次拼接字符串并换行
 
-​              tempStr = params.substring(start, end) + '\n';
+              tempStr = params.substring(start, end) + '\n';
 
-​          }
+          }
 
-​          newParamsName += tempStr;// 最终拼成的字符串
+          newParamsName += tempStr;// 最终拼成的字符串
 
-​      }
+      }
 
   } else {
 
@@ -170,7 +180,9 @@ Code Review
 
   return newParamsName
 
-}`
+}
+
+```
 
 
 
